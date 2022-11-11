@@ -1,5 +1,6 @@
 // import a built-in http node module
 const http = require("http");
+const { getVehicles } = require("./controllers/vehicleController");
 
 // create an http server
 const server = http.createServer((req, res) => {

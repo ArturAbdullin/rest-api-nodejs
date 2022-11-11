@@ -3,6 +3,12 @@ const IncomingMessage = require("http").IncomingMessage;
 const ServerResponse = require("http").ServerResponse;
 
 const VehicleDatabase = require("../models/vehicleModel");
+const ContentType = {
+  _contentType: "Content-Type",
+  get applicationJSON() {
+    return { [this._contentType]: "application/json" };
+  },
+};
 
 /**
  * Return a Promise to return vehicles from the database

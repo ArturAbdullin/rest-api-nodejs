@@ -5,6 +5,11 @@ const http = require("http");
 const server = http.createServer((req, res) => {
   if (req.url === "/api/vehicles" && req.method === "GET") {
     getVehicles(req, res);
+  } else {
+    res.writeHead(404, {
+      "Content-Type": "application/json",
+    });
+    res.end(JSON.stringify({ message: "Route Not Found" }));
   }
 });
 

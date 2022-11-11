@@ -2,7 +2,11 @@
 const http = require("http");
 
 // create an http server
-const server = http.createServer((req, res) => {});
+const server = http.createServer((req, res) => {
+  if (req.url === "/api/vehicles" && req.method === "GET") {
+    getVehicles(req, res);
+  }
+});
 
 // create a port to run the server on
 // check if there is an environments port variable

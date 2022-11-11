@@ -1,0 +1,23 @@
+{
+  "name": "rest-api-nodejs",
+  "version": "1.0.0",
+  "description": "rest api using vanilla nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArturAbdullin/rest-api-nodejs.git"
+  },
+  "keywords": [
+    "rest-api",
+    "nodejs"
+  ],
+  "author": "Artur Abdullin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArturAbdullin/rest-api-nodejs/issues"
+  },
+  "homepage": "https://github.com/ArturAbdullin/rest-api-nodejs#readme"
+}

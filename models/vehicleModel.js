@@ -2,7 +2,7 @@
 /**
  * @type {{id: number, vehicle: string, price: string, description: string}[]}
  */
-const vehicles = JSON.parse(require("../data/vehicles"));
+const vehicles = require("../data/vehicles");
 
 /**
  * Return a Promise to return all vehicles in the database

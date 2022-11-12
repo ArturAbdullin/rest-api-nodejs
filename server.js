@@ -21,6 +21,12 @@ const server = http.createServer((req, res) => {
   ) {
     const id = parseId(req.url);
     VehiclesDatabaseController.updateVehicle(req, res, id);
+  } else if (
+    req.url.match(/\/api\/vehicles\/([a-z0-9-]+)/) &&
+    req.method === "DELETE"
+  ) {
+    const id = parseId(req.url);
+    VehiclesDatabaseController.deleteVehicle(req, res, id);
   } else {
     res.writeHead(404, {
       "Content-Type": "application/json",

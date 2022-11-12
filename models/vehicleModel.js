@@ -14,7 +14,7 @@ const VehicleType = {
 /**
  * @type {VehicleType[]}
  */
-const vehicles = require("../data/vehicles");
+let vehicles = require("../data/vehicles");
 
 /**
  * Return a Promise to return all vehicles in the database
@@ -67,9 +67,23 @@ function updateEntry(id, vehicle) {
   });
 }
 
+/**
+ * Return a Promise to delete a vehicle from the database by id
+ * @param {string} id
+ * @returns {Promise<void>}
+ */
+function removeEntry(id) {
+  return new Promise((resolve, reject) => {
+    vehicles = vehicles.filter((v) => v.id !== id);
+    writeDataToFile("./data/vehicles.json", vehicles);
+    resolve();
+  });
+}
+
 module.exports = {
   findAll,
   findById,
   createEntry,
   updateEntry,
+  removeEntry,
 };

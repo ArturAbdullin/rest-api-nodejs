@@ -114,9 +114,32 @@ async function updateVehicle(req, res, id) {
   }
 }
 
+/**
+ * Delete an entry from the vehicles database
+ * @param {IncomingMessage} req
+ * @param {ServerResponse} res
+ * @param {string} id
+ */
+async function deleteVehicle(req, res, id) {
+  try {
+    const vehicle = await VehicleDatabase.findById(id);
+    if (!vehicle) {
+      res.writeHead(404, ContentType.applicationJSON);
+      res.end(JSON.stringify({ message: "Vehicle Not Found" }));
+    } else {
+      await VehicleDatabase.removeEntry(id);
+      res.writeHead(200, ContentType.applicationJSON);
+      res.end(JSON.stringify({ message: `Vehicle ${id} removed` }));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports = {
   getVehicles,
   getVehicle,
   createVehicle,
   updateVehicle,
+  deleteVehicle,
 };

@@ -1,6 +1,5 @@
 // these are just for the typing sake
-const IncomingMessage = require("http").IncomingMessage;
-const ServerResponse = require("http").ServerResponse;
+const { IncomingMessage, ServerResponse } = require("http");
 
 const VehicleDatabase = require("../models/vehicleModel");
 const ContentType = {

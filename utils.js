@@ -34,7 +34,17 @@ function getPostBody(req) {
   });
 }
 
+/**
+ * Parse a vehicle id from the url
+ * @param {IncomingMessage.url} url
+ * @returns {string}
+ */
+function parseId(url) {
+  return url.split("/")[3];
+}
+
 module.exports = {
   writeDataToFile,
-  getPostBody
+  getPostBody,
+  parseId
 };

@@ -5,6 +5,7 @@ const {
   getVehicle,
   createVehicle,
 } = require("./controllers/vehicleController");
+const { parseId } = require("./utils");
 
 // create an http server
 const server = http.createServer((req, res) => {
@@ -14,7 +15,7 @@ const server = http.createServer((req, res) => {
     req.url.match(/\/api\/vehicles\/([a-z0-9-]+)/) &&
     req.method === "GET"
   ) {
-    const id = req.url.split("/")[3];
+    const id = parseId(req.url);
     getVehicle(req, res, id);
   } else if (req.url === "/api/vehicles" && req.method === "POST") {
     createVehicle(req, res);

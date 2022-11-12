@@ -2,6 +2,7 @@
 const { IncomingMessage, ServerResponse } = require("http");
 
 const VehicleDatabase = require("../models/vehicleModel");
+const { getPostBody } = require("../utils");
 const ContentType = {
   _contentType: "Content-Type",
   get applicationJSON() {
@@ -61,25 +62,19 @@ async function getVehicle(req, res, id) {
  */
 async function createVehicle(req, res) {
   try {
-    let body = ""; // POST method body
-    req.on("data", (chunk) => {
-      body += chunk.toString();
-    });
+    const body = await getPostBody(req);
+    const { vehicle, price, description } = JSON.parse(body);
 
-    req.on("end", async () => {
-      const { vehicle, price, description } = JSON.parse(body);
+    const vehicleData = {
+      vehicle,
+      price,
+      description,
+    };
 
-      const vehicleData = {
-        vehicle,
-        price,
-        description,
-      };
+    const newVehicle = await VehicleDatabase.createEntry(vehicleData);
 
-      const newVehicle = await VehicleDatabase.createEntry(vehicleData);
-
-      res.writeHead(201, ContentType.applicationJSON);
-      res.end(JSON.stringify(newVehicle));
-    });
+    res.writeHead(201, ContentType.applicationJSON);
+    res.end(JSON.stringify(newVehicle));
   } catch (error) {
     console.log(error);
   }

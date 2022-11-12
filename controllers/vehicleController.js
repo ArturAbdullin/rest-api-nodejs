@@ -54,7 +54,39 @@ async function getVehicle(req, res, id) {
   }
 }
 
+/**
+ * Create an entry in the vehicles database
+ * @param {IncomingMessage} req
+ * @param {ServerResponse} res
+ */
+async function createVehicle(req, res) {
+  try {
+    let body = ""; // POST method body
+    req.on("data", (chunk) => {
+      body += chunk.toString();
+    });
+
+    req.on("end", async () => {
+      const { vehicle, price, description } = JSON.parse(body);
+
+      const vehicleData = {
+        vehicle,
+        price,
+        description,
+      };
+
+      const newVehicle = await VehicleDatabase.createEntry(vehicleData);
+
+      res.writeHead(201, ContentType.applicationJSON);
+      res.end(JSON.stringify(newVehicle));
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports = {
   getVehicles,
-  getVehicle
+  getVehicle,
+  createVehicle,
 };

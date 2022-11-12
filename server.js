@@ -7,7 +7,7 @@ const server = http.createServer((req, res) => {
   if (req.url === "/api/vehicles" && req.method === "GET") {
     getVehicles(req, res);
   } else if (
-    req.url.match(/\/api\/vehicles\/([0-9]+)/) &&
+    req.url.match(/\/api\/vehicles\/([a-z0-9-]+)/) &&
     req.method === "GET"
   ) {
     const id = req.url.split("/")[3];

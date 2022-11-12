@@ -1,6 +1,14 @@
+// the object that represents the type of the database entry
+const VehicleType = {
+  id: 1,
+  vehicle: "vehicleName",
+  price: "vehiclePrice",
+  description: "vehicleDescription",
+};
+
 // import local database (.json file)
 /**
- * @type {{id: number, vehicle: string, price: string, description: string}[]}
+ * @type {VehicleType[]}
  */
 const vehicles = require("../data/vehicles");
 
@@ -17,7 +25,7 @@ function findAll() {
 /**
  * Return a Promise to return a vehicle from the database by id
  * @param {number} id
- * @returns {Promise<{id: number, vehicle: string, price: string, description: string}>}
+ * @returns {Promise<VehicleType>}
  */
 function findById(id) {
   return new Promise((resolve, reject) => {

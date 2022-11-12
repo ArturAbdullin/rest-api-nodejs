@@ -37,6 +37,7 @@ async function getVehicles(req, res) {
  * Return a Promise to return a vehicle from the database by id
  * @param {IncomingMessage} req
  * @param {ServerResponse} res
+ * @param {string} id
  */
 async function getVehicle(req, res, id) {
   try {

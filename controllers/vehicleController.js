@@ -10,7 +10,7 @@ const ContentType = {
 };
 
 /**
- * Return a Promise to return vehicles from the database
+ * Response with all the enties from the vehicles database
  * @param {IncomingMessage} req
  * @param {ServerResponse} res
  */
@@ -34,7 +34,7 @@ async function getVehicles(req, res) {
 }
 
 /**
- * Return a Promise to return a vehicle from the database by id
+ * Response with the specified entry from the vehicles database
  * @param {IncomingMessage} req
  * @param {ServerResponse} res
  * @param {string} id

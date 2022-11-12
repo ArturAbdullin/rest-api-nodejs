@@ -1,6 +1,10 @@
 // import a built-in http node module
 const http = require("http");
-const { getVehicles, getVehicle } = require("./controllers/vehicleController");
+const {
+  getVehicles,
+  getVehicle,
+  createVehicle,
+} = require("./controllers/vehicleController");
 
 // create an http server
 const server = http.createServer((req, res) => {
@@ -12,6 +16,8 @@ const server = http.createServer((req, res) => {
   ) {
     const id = req.url.split("/")[3];
     getVehicle(req, res, id);
+  } else if (req.url === "/api/vehicles" && req.method === "POST") {
+    createVehicle(req, res);
   } else {
     res.writeHead(404, {
       "Content-Type": "application/json",

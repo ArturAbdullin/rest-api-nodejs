@@ -14,6 +14,19 @@ function findAll() {
   });
 }
 
+/**
+ * Return a Promise to return a vehicle from the database by id
+ * @param {number} id
+ * @returns {Promise<{id: number, vehicle: string, price: string, description: string}>}
+ */
+function findById(id) {
+  return new Promise((resolve, reject) => {
+    const vehicle = vehicles.find(v => v.id === id);
+    resolve(vehicle);
+  });
+}
+
 module.exports = {
   findAll,
+  findById
 };

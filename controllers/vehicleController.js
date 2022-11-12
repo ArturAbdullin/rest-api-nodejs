@@ -23,9 +23,7 @@ async function getVehicles(req, res) {
     // write to the response head
     // status OK = 200
     // Content-Type = applicaton/json as we return .json data
-    res.writeHead(200, {
-      "Content-Type": "application/json",
-    });
+    res.writeHead(200, ContentType.applicationJSON);
     // write and simultaneously end the response
     res.end(JSON.stringify(vehicles));
     // the above line is a shorthand for

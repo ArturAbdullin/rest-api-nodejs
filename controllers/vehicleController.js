@@ -80,8 +80,43 @@ async function createVehicle(req, res) {
   }
 }
 
+/**
+ * Update an entry in the vehicles database
+ * @param {IncomingMessage} req
+ * @param {ServerResponse} res
+ * @param {string} id
+ */
+async function updateVehicle(req, res, id) {
+  try {
+    const oldVehicleData = await VehicleDatabase.findById(id);
+
+    if (!oldVehicleData) {
+      res.writeHead(404, ContentType.applicationJSON);
+      res.end(JSON.stringify({ message: "Vehicle Not Found" }));
+    } else {
+      const body = await getPostBody(req);
+      const { vehicle, price, description } = JSON.parse(body);
+
+      const vehicleData = {
+        ...oldVehicleData,
+        vehicle: vehicle || oldVehicleData.vehicle,
+        price: price || oldVehicleData.price,
+        description: description || oldVehicleData.description,
+      };
+
+      const updatedVehicle = await VehicleDatabase.updateEntry(id, vehicleData);
+
+      res.writeHead(201, ContentType.applicationJSON);
+      res.end(JSON.stringify(updatedVehicle));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports = {
   getVehicles,
   getVehicle,
   createVehicle,
+  updateVehicle,
 };

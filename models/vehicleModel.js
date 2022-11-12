@@ -52,8 +52,24 @@ function createEntry(vehicle) {
   });
 }
 
+/**
+ *
+ * @param {string} id
+ * @param {VehicleType} vehicle
+ * @returns {Promise<VehicleType>}
+ */
+function updateEntry(id, vehicle) {
+  return new Promise((resolve, reject) => {
+    const index = vehicles.findIndex((v) => v.id === id);
+    vehicles[index] = { ...vehicle };
+    writeDataToFile("./data/vehicles.json", vehicles);
+    resolve(vehicles[index]);
+  });
+}
+
 module.exports = {
   findAll,
   findById,
   createEntry,
+  updateEntry,
 };

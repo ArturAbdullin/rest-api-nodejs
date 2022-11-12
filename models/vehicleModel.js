@@ -1,3 +1,7 @@
+// utils
+const { v4: uuidv4 } = require("uuid");
+const { writeDataToFile } = require("../utils");
+
 // the object that represents the type of the database entry
 const VehicleType = {
   id: "id",
@@ -34,7 +38,22 @@ function findById(id) {
   });
 }
 
+/**
+ * Return a Promise to create an entry in the vehicles database
+ * @param {VehicleType} vehicle
+ * @returns {Promise<VehicleType>}
+ */
+function createEntry(vehicle) {
+  return new Promise((resolve, reject) => {
+    const newVehicle = { id: uuidv4(), ...vehicle };
+    vehicles.push(newVehicle);
+    writeDataToFile("./data/vehicles.json", vehicles);
+    resolve(newVehicle);
+  });
+}
+
 module.exports = {
   findAll,
-  findById
+  findById,
+  createEntry,
 };

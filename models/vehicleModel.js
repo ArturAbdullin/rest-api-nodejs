@@ -1,6 +1,6 @@
 // the object that represents the type of the database entry
 const VehicleType = {
-  id: 1,
+  id: "id",
   vehicle: "vehicleName",
   price: "vehiclePrice",
   description: "vehicleDescription",
@@ -24,12 +24,12 @@ function findAll() {
 
 /**
  * Return a Promise to return a vehicle from the database by id
- * @param {number} id
+ * @param {string} id
  * @returns {Promise<VehicleType>}
  */
 function findById(id) {
   return new Promise((resolve, reject) => {
-    const vehicle = vehicles.find(v => v.id === id);
+    const vehicle = vehicles.find((v) => v.id === id);
     resolve(vehicle);
   });
 }

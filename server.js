@@ -10,7 +10,7 @@ const server = http.createServer((req, res) => {
     req.url.match(/\/api\/vehicles\/([0-9]+)/) &&
     req.method === "GET"
   ) {
-    const id = Number(req.url.split("/")[3]);
+    const id = req.url.split("/")[3];
     getVehicle(req, res, id);
   } else {
     res.writeHead(404, {
